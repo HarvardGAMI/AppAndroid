@@ -24,7 +24,7 @@ public class patientimage extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
 
-
+//testcommit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
