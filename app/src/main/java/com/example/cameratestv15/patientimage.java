@@ -24,7 +24,7 @@ public class patientimage extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
 
-//testcommit
+//testcommitt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class patientimage extends AppCompatActivity {
     }
 
 
-   /* public void takePicture(View view) {
+    public void takePicture(View view) {
         //Log.d("Activity", "Picture taking");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -44,9 +44,9 @@ public class patientimage extends AppCompatActivity {
 
         }
 
-    }*/
+    }
 
-    public void takePicture(View view) {
+   /* public void takePicture(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -67,7 +67,8 @@ public class patientimage extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
-    }
+    }*/
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -78,6 +79,9 @@ public class patientimage extends AppCompatActivity {
             mImageView.setImageBitmap(imageBitmap);
         }
     }
+
+
+
 
     private File createImageFile() throws IOException {
         // Create an image file name
