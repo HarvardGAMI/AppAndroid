@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class patientimage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientimage);
         mImageView = findViewById(R.id.imageView);
+        Button pictureButton = (Button) findViewById(R.id.pictureButton);
+        pictureButton.setText("Take Picture for " + patientinfo.getName());
     }
 
     //code to request camera to take picture and sets up storage of picture
@@ -76,7 +79,7 @@ public class patientimage extends AppCompatActivity {
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
+        // Create an image file name for picture
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);

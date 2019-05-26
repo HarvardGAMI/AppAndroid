@@ -29,7 +29,6 @@
         />-->
 
 
-
     <Button
         android:id="@+id/pictureActivity"
         android:layout_width="wrap_content"
@@ -39,8 +38,5 @@
         android:layout_marginTop="50dp"
         android:textAllCaps="false"
         />
-
-
-
 
 </LinearLayout>

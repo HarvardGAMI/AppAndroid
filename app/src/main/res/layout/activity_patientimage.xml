@@ -16,6 +16,7 @@
         android:layout_marginTop="15dp"
         android:textAllCaps="false"
         android:onClick="takePicture"
+        android:id="@+id/pictureButton"
 
         />
 
