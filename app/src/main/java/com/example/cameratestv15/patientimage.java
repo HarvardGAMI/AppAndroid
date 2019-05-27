@@ -26,6 +26,7 @@ public class patientimage extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 101;
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath = null;
+    static Uri photoURI;
     File photoFile = null;
 
     @Override
@@ -54,7 +55,7 @@ public class patientimage extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
+                photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -66,16 +67,18 @@ public class patientimage extends AppCompatActivity {
     //after picture is taken and stored, open up picture and display it in imageView preview
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (resultCode == RESULT_OK) {
-                // by this point we have the camera photo on disk
-                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
-                ImageView ivPreview = (ImageView) findViewById(R.id.imageView);
-                ivPreview.setImageBitmap(takenImage);
-            } else { // Result was a failure
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-            }
+        if (resultCode == RESULT_OK) {
+            // by this point we have the camera photo on disk
+            Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+            // RESIZE BITMAP, see section below
+            // Load the taken image into a preview
+            ImageView ivPreview = (ImageView) findViewById(R.id.imageView);
+            ivPreview.setImageBitmap(takenImage);
+        } else { // Result was a failure
+            Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+        }
+
+        startActivity(new Intent(patientimage.this,CropImage.class));
     }
 
     private File createImageFile() throws IOException {
@@ -92,6 +95,11 @@ public class patientimage extends AppCompatActivity {
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+
+    public static Uri getPhotoURI ()
+    {
+            return photoURI;
     }
 
 
