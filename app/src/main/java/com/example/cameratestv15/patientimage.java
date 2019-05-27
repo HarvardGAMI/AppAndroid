@@ -27,6 +27,7 @@ public class patientimage extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath = null;
     File photoFile = null;
+    static Uri  photoURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class patientimage extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
+                photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -76,6 +77,9 @@ public class patientimage extends AppCompatActivity {
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
+
+        startActivity(new Intent(patientimage.this,CropImage.class));
+
     }
 
     private File createImageFile() throws IOException {
@@ -92,6 +96,11 @@ public class patientimage extends AppCompatActivity {
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+
+    public static Uri getPhotoURI ()
+    {
+        return photoURI;
     }
 
 
