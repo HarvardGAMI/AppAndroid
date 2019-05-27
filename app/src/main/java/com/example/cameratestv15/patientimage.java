@@ -26,6 +26,7 @@ public class patientimage extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 101;
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath = null;
+    static Uri photoURI;
     File photoFile = null;
     static Uri photoURI = null;
 
